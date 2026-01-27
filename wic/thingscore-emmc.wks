@@ -1,0 +1,10 @@
+bootloader --ptable gpt
+
+# Slots A and B for rootfs and bootfs partitions 
+part /boot   --source bootimg-partition --ondisk mmcblk1 --fstype=ext4 --label bootfs_a   --fixed-size 64M --active
+part /       --source rootfs            --ondisk mmcblk1 --fstype=ext4 --label rootfs_a --fixed-size 2048M --uuid e91c4e10-16e6-4c0e-bd0e-77becf4a3582
+part /boot_b --source bootimg-partition --ondisk mmcblk1 --fstype=ext4 --label bootfs_b   --fixed-size 64M
+part /       --source rootfs            --ondisk mmcblk1 --fstype=ext4 --label rootfs_b --fixed-size 2048M --uuid e91c4e10-16e6-4c0e-bd0e-77becf4a3582
+
+# Userfs partition meant to be expanded to rest emmc
+part /data   --ondisk mmcblk1 --fstype=ext4 --label userfs --size 256M
