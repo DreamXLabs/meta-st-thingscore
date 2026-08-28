@@ -16,17 +16,12 @@
 
 	/* USER CODE BEGIN root */
 	aliases{
-		mmc0 = &sdmmc1;
+		mmc1 = &sdmmc2;
 		usb1 = &usbotg_hs;
 	};
 	
 	config{
 		u-boot,mmc-env-partition = "u-boot-env";	
-	};
-	
-	fwu-mdata{
-		compatible = "u-boot,fwu-mdata-gpt";
-		fwu-mdata-store = <&sdmmc1>;
 	};
 	/* USER CODE END root */
 
@@ -40,7 +35,7 @@
 &uart4_pins_mx {
 	bootph-all;
 	pins1 {
-		bootph-all;
+		bootph-all;Pantelis
 	};
 	pins2 {
 		bootph-all;
@@ -49,7 +44,6 @@
 
 &usbotg_hs {
    u-boot,force-b-session-valid;
-   u-boot,force-vbus-detection;
    dr_mode = "peripheral";
 };
 /* USER CODE END addons */

@@ -213,7 +213,8 @@
 
 &bsec {
 	status = "okay";
-
+	st,non-secure-otp;
+	
 	/* USER CODE BEGIN bsec */
 	board_id:board_id@f0{
 		reg = <0xf0 0x4>;
@@ -227,6 +228,13 @@
 
 	/* USER CODE BEGIN hash */
 	/* USER CODE END hash */
+};
+
+&pka {
+	status = "okay";
+
+	/* USER CODE BEGIN pka */
+	/* USER CODE END pka */
 };
 
 &pwr_regulators {
@@ -345,6 +353,13 @@
 
 	/* USER CODE BEGIN rng */
 	/* USER CODE END rng */
+};
+
+&saes {
+	status = "okay";
+
+	/* USER CODE BEGIN saes */
+	/* USER CODE END saes */
 };
 
 &sdmmc1 {

@@ -343,13 +343,13 @@
 					 <STM32_PINMUX('C', 7, AF10)>, /* SDMMC2_D7 */
 					 <STM32_PINMUX('F', 0, AF10)>, /* SDMMC2_D4 */
 					 <STM32_PINMUX('G', 6, AF10)>; /* SDMMC2_CMD */
-			bias-disable;
+			bias-pull-up;
 			drive-push-pull;
 			slew-rate = <1>;
 		};
 		pins2 {
 			pinmux = <STM32_PINMUX('E', 3, AF10)>; /* SDMMC2_CK */
-			bias-disable;
+			bias-pull-up;
 			drive-push-pull;
 			slew-rate = <3>;
 		};
@@ -365,19 +365,19 @@
 					 <STM32_PINMUX('C', 6, AF10)>, /* SDMMC2_D6 */
 					 <STM32_PINMUX('C', 7, AF10)>, /* SDMMC2_D7 */
 					 <STM32_PINMUX('F', 0, AF10)>; /* SDMMC2_D4 */
-			bias-disable;
+			bias-pull-up;
 			drive-push-pull;
 			slew-rate = <1>;
 		};
 		pins2 {
 			pinmux = <STM32_PINMUX('E', 3, AF10)>; /* SDMMC2_CK */
-			bias-disable;
+			bias-pull-up;
 			drive-push-pull;
 			slew-rate = <3>;
 		};
 		pins3 {
 			pinmux = <STM32_PINMUX('G', 6, AF10)>; /* SDMMC2_CMD */
-			bias-disable;
+			bias-pull-up;
 			drive-open-drain;
 			slew-rate = <1>;
 		};
@@ -662,7 +662,7 @@
 	pinctrl-0 = <&sdmmc1_pins_mx>;
 	pinctrl-1 = <&sdmmc1_opendrain_pins_mx>;
 	pinctrl-2 = <&sdmmc1_sleep_pins_mx>;
-	status = "okay";
+	status = "disabled";
 
 	/* USER CODE BEGIN sdmmc1 */
 	#address-cells = <1>;
@@ -691,13 +691,11 @@
 	status = "okay";
 
 	/* USER CODE BEGIN sdmmc2 */
-	non-removable;                                       
-	no-sd;                                               
-	no-sdio;                                              
-	st,neg-edge;                                           
-	bus-width = <8>;                                    
-	vmmc-supply = <&vdd>;                      
-	vqmmc-supply = <&vdd>; 
+	st,max-frequency = <50000000>;
+	disable-wp;
+	st,neg-edge;
+	bus-width = <8>;
+	vmmc-supply = <&vdd_sd>;
 	/* USER CODE END sdmmc2 */
 };
 
@@ -760,6 +758,9 @@
 	status = "okay";
 
 	/* USER CODE BEGIN usbotg_hs */
+	phys = <&usbphyc_port1 0>;
+	phy-names = "usb2-phy";
+	usb-role-switch;
 	/* USER CODE END usbotg_hs */
 };
 
